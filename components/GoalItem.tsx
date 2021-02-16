@@ -1,16 +1,25 @@
 import React from 'react'
-import { View, Text, StyleSheet, ListRenderItemInfo } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  ListRenderItemInfo,
+  TouchableOpacity
+} from 'react-native'
 import { goal } from '../App'
 
 interface props {
   itemData: ListRenderItemInfo<goal>
+  removeGoalHandler: (goalId: string) => void
 }
 
-const GoalItem = ({ itemData }: props) => {
+const GoalItem = ({ itemData, removeGoalHandler }: props) => {
   return (
-    <View style={styles.listItem}>
-      <Text>{itemData.item.value}</Text>
-    </View>
+    <TouchableOpacity onPress={() => removeGoalHandler(itemData.item.id)}>
+      <View style={styles.listItem}>
+        <Text>{itemData.item.value}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 
